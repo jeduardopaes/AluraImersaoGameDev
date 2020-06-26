@@ -1,26 +1,27 @@
-class Personagem {
+class Personagem extends Animacao {
 
-    constructor(imagem, widthPersonagem, heightPersonagem) {
-        this.imagem = imagem;
-        this.width = widthPersonagem;
-        this.height = heightPersonagem;
-        this.frame = [0, 0];
+    constructor(matriz, imagem, posicaoX,
+        largura, altura, larguraSprite, alturaSprite) {
+
+        super(matriz, imagem, posicaoX,
+            largura, altura, larguraSprite, alturaSprite);
+
+        this.gravidade = 3;
+        this.velocidadeDoPulo = 0;
+        this.posicaoYChao = height - this.altura;
     }
 
-    exibe() {
-        image(this.imagem, 25, height - 135, 110, 135, this.frame[0], this.frame[1], this.width, this.height);
-
-        this.anima();
+    pula() {
+        this.velocidadeDoPulo = -50
     }
 
-    anima() {
-        this.frame[0] += this.width;
-        if (this.frame[0] >= this.imagem.width) {
-            this.frame[0] = 0;
-            this.frame[1] += this.height;
+    aplicaGravidade() {
+        this.posicaoY += this.velocidadeDoPulo;
+        this.velocidadeDoPulo = this.velocidadeDoPulo + this.gravidade;
+
+        if (this.posicaoYChao < this.posicaoY) {
+            this.posicaoY = this.posicaoYChao;
         }
-        if (this.frame[1] >= this.imagem.height) {
-            this.frame[1] = 0;
-        }
+
     }
 }

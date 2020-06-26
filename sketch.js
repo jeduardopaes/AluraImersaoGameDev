@@ -2,7 +2,6 @@ let imagemCenario;
 let imagemPersonagem;
 let imagemInimigo;
 let cenario;
-let personagem;
 let somDoJogo;
 
 const matrizPersonagem = [
@@ -67,17 +66,27 @@ function preload() {
 function setup() {
     createCanvas(windowWidth, windowHeight);
     cenario = new Cenario(imagemCenario, 5);
-    personagem = new Personagem(imagemPersonagem, 220, 270);
+    personagem = new Personagem(matrizPersonagem, imagemPersonagem, 15, 110, 135, 220, 270);
     inimigo = new Inimigo(matrizInimigo, imagemInimigo, width - 52, 52, 52, 104, 104);
 
     somDoJogo.loop();
     frameRate(32);
 }
 
+// Check if key is pressed
+function keyPressed() {
+    if (keyCode === 32) {
+        personagem.pula();
+    }
+}
+
+
 // this function updates canvas
 function draw() {
     cenario.exibe();
     cenario.move();
     personagem.exibe();
+    personagem.aplicaGravidade();
     inimigo.exibe();
+    inimigo.move();
 }
