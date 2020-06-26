@@ -3,6 +3,7 @@ let imagemPersonagem;
 let imagemInimigo;
 let cenario;
 let somDoJogo;
+let somDoPulo;
 
 const matrizPersonagem = [
     [0, 0],
@@ -59,6 +60,7 @@ function preload() {
     imagemPersonagem = loadImage('assets/imagens/personagem/correndo.png');
     imagemInimigo = loadImage('assets/imagens/inimigos/gotinha.png');
     somDoJogo = loadSound('assets/sons/trilha_jogo.mp3');
+    somDoPulo = loadSound('assets/sons/somPulo.mp3');
 
 }
 
@@ -76,6 +78,7 @@ function setup() {
 // Check if key is pressed
 function keyPressed() {
     if (keyCode === 32) {
+        somDoPulo.play();
         personagem.pula();
     }
 }
