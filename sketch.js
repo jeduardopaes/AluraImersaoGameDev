@@ -87,6 +87,10 @@ function draw() {
     cenario.move();
     personagem.exibe();
     personagem.aplicaGravidade();
+    if (personagem.estaColidindo(inimigo)) {
+        console.log('Colidiu!');
+        noLoop();
+    }
     inimigo.exibe();
     inimigo.move();
 }
