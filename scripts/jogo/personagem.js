@@ -1,14 +1,14 @@
 class Personagem extends Animacao {
 
-    constructor(matriz, imagem, posicaoX,
+    constructor(matriz, imagem, posicaoX, variacaoY,
         largura, altura, larguraSprite, alturaSprite) {
 
-        super(matriz, imagem, posicaoX,
+        super(matriz, imagem, posicaoX, variacaoY,
             largura, altura, larguraSprite, alturaSprite);
 
         this.gravidade = 3;
         this.velocidadeDoPulo = 0;
-        this.posicaoYChao = height - this.altura;
+        this.posicaoYChao = height - this.altura - variacaoY;
     }
 
     pula() {
